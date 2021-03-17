@@ -1,0 +1,71 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Lecturer</h4>
+    <hr />
+    <div class="row">
+
+        <span class="col-sm-2 font-weight-bold">NAME</span>
+        <span class="col-sm-10">@Model.Lecturer.Name @Model.Lecturer.Surname</span>
+
+        <span class="col-sm-2 font-weight-bold">RANK</span>
+        <span class="col-sm-10">@Model.Lecturer.Rank </span>
+
+        <span class="col-sm-2 font-weight-bold">EMAIL</span>
+        <span class="col-sm-10">@Model.Lecturer.Email </span>
+
+        <span class="col-sm-2 font-weight-bold">PHONE</span>
+        <span class="col-sm-10">@Model.Lecturer.Phone </span>
+
+        <span class="col-sm-2 font-weight-bold">DEPARTMENT</span>
+        <span class="col-sm-10">@Model.Lecturer.Department.Name</span>
+
+        <span class="col-sm-2 font-weight-bold">FACULTY</span>
+        <span class="col-sm-10">@Model.Lecturer.Department.Faculty.Name</span>
+
+        <span class="col-sm-2 font-weight-bold">UNIVERSITY</span>
+        <span class="col-sm-10">@Model.Lecturer.Department.Faculty.University.Name </span>
+       
+    </div>
+    <div class="row mt-5">
+        <h4>Lessons</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Per Week</th>
+                    <th scope="col">Credit</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Lesson sl in Model.Lessons)
+                {
+                <tr>
+
+                    <th scope="row">@sl.Code</th>
+                    <td>@sl.Name</td>
+                    <td>@sl.Department.Name</td>
+                    <td>@sl.LessonPerWeek</td>
+                    <td>@sl.Credit</td>
+                    <td>
+                        <a asp-controller="Lessons" asp-action="Details" asp-route-id="@sl.ID">Detail</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Lecturer.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

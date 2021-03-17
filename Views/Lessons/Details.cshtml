@@ -1,0 +1,67 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Lesson</h4>
+    <hr />
+    <div class="row">
+        <span class="col-sm-2 font-weight-bold">CODE</span>
+        <span class="col-sm-10">@Model.Lesson.Code</span>
+
+        <span class="col-sm-2 font-weight-bold">NAME</span>
+        <span class="col-sm-10">@Model.Lesson.Name</span>
+
+        <span class="col-sm-2 font-weight-bold">PERWEEK</span>
+        <span class="col-sm-10">@Model.Lesson.LessonPerWeek</span>
+
+        <span class="col-sm-2 font-weight-bold">CREDIT</span>
+        <span class="col-sm-10">@Model.Lesson.Credit</span>
+
+        <span class="col-sm-2 font-weight-bold">LECTURER</span>
+        <span class="col-sm-10">@Model.Lesson.Lecturer.Name @Model.Lesson.Lecturer.Surname</span>
+
+        <span class="col-sm-2 font-weight-bold">DEPARTMENT</span>
+        <span class="col-sm-10">@Model.Lesson.Department.Name</span>
+
+    </div>
+    <div class="row mt-5">
+        <h4>Students</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">School Number</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Class</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Grade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StudentLesson sl in Model.StudentLessons)
+                {
+                <tr>
+
+                    <th scope="row">@sl.Student.SchoolNumber</th>
+                    <td>@sl.Student.Name @sl.Student.Surname</td>
+                    <td>@sl.Student.Class</td>
+                    <td>@sl.Student.Department.Name</td>
+                    <td>@sl.Grade</td>
+                    <td>
+                        <a asp-controller="StudentLessons" asp-action="Edit" asp-route-id="@sl.ID">Edit</a> |
+                        <a asp-controller="Students" asp-action="Details" asp-route-id="@sl.Student.ID">Detail</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Lesson.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

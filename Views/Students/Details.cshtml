@@ -1,0 +1,69 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <div class="row">
+        <span class="col-sm-2 font-weight-bold">NAME</span>
+        <span class="col-sm-10">@Model.Student.Name @Model.Student.Surname</span>
+
+        <span class="col-sm-2 font-weight-bold">NUMBER:</span>
+        <span class="col-sm-10">@Model.Student.SchoolNumber</span>
+
+        <span class="col-sm-2 font-weight-bold">E-MAIL:</span>
+        <span class="col-sm-10">@Model.Student.Email</span>
+
+        <span class="col-sm-2 font-weight-bold">PHONE:</span>
+        <span class="col-sm-10">@Model.Student.Phone</span>
+
+        <span class="col-sm-2 font-weight-bold">BIRTHDAY:</span>
+        <span class="col-sm-10">@Convert.ToDateTime(@Model.Student.Birthday).ToString("dd/mm/yyyy")</span>
+
+        <span class="col-sm-2 font-weight-bold">CLASS:</span>
+        <span class="col-sm-10">@Model.Student.Class</span>
+
+        <span class="col-sm-2 font-weight-bold">DEPARTMENT:</span>
+        <span class="col-sm-10">@Model.Student.Department.Name</span>
+
+        <span class="col-sm-2 font-weight-bold">UNIVERSITY:</span>
+        <span class="col-sm-10">@Model.Student.Department.Faculty.University.Name</span>
+    </div>
+    <div class="row mt-5">
+        <h4>Lessons</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Code</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Lecturer</th>
+                    <th scope="col">Credit</th>
+                    <th scope="col">Grade</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StudentLesson sl in Model.StudentLessons)
+                {
+                <tr>
+
+                    <th scope="row">@sl.Lesson.Code</th>
+                    <td>@sl.Lesson.Name</td>
+                    <td>@sl.Lesson.Lecturer.Rank @sl.Lesson.Lecturer.Name @sl.Lesson.Lecturer.Surname</td>
+                    <td>@sl.Lesson.Credit</td>
+                    <td>@sl.Grade</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Student.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

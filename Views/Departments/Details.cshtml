@@ -1,0 +1,78 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <div class="row">
+        <span class="col-sm-2 font-weight-bold">NAME</span>
+        <span class="col-sm-10">@Model.Department.Name</span>
+
+        <span class="col-sm-2 font-weight-bold">LANGUAGE</span>
+        <span class="col-sm-10">@Model.Department.Language</span>
+
+        <span class="col-sm-2 font-weight-bold">PRIMARY EDUCATION</span>
+        <div class="col-10 justify-content-start">
+            @if (Model.Department.PrimaryEducation)
+            {
+                <input type="checkbox" checked onclick="return false" />
+            }
+            else
+            {
+                <input type="checkbox" onclick="return false" />
+            }
+        </div>
+
+        <span class="col-sm-2 font-weight-bold">SECONDARY EDUCATION</span>
+        <div class="col-10 justify-content-start">
+            @if (Model.Department.SecondaryEducation)
+            {
+                <input type="checkbox" checked onclick="return false" />
+            }
+            else
+            {
+                <input type="checkbox" onclick="return false" />
+            }
+        </div>
+
+        <span class="col-sm-2 font-weight-bold">FACULTY</span>
+        <span class="col-sm-10">@Model.Department.Faculty.Name</span>
+    </div>
+
+    <div class="row mt-5">
+        <h4>Lecturer</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Rank</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Lecturer l in Model.Lecturers)
+                {
+                    <tr>
+
+                        <th scope="row">@l.Name</th>
+                        <td>@l.Surname</td>
+                        <td>@l.Rank</td>
+                        <td>
+                            <a asp-controller="Lecturers" asp-action="Details" asp-route-id="@l.ID">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Department.ID">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

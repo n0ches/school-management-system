@@ -1,0 +1,74 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Rank
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Surname
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Faculty
+            </th>
+            <th>
+                University
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Lecturer l in Model.Lecturers) {
+        <tr>
+            <td>
+                @l.Rank
+            </td>
+            <td>
+                @l.Name
+            </td>
+            <td>
+                @l.Surname
+            </td>
+            <td>
+                @l.Email
+            </td>
+            <td>
+                @l.Phone
+            </td>
+            <td>
+                @l.Department.Name
+            </td>
+            <td>
+                @l.Department.Faculty.Name
+            </td>
+            <td>
+                @l.Department.Faculty.University.Name
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@l.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@l.ID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

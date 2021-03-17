@@ -1,0 +1,68 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Faculty</h4>
+    <hr />
+    <div class="row">
+        <span class="col-sm-2 font-weight-bold">NAME</span>
+        <span class="col-sm-10">@Model.Faculty.Name</span>
+    </div>
+
+    <div class="row mt-5">
+        <h4>Departments</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Primary Education</th>
+                    <th scope="col">Secodary Education</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Department d in Model.Departments)
+                {
+                    <tr>
+
+                        <th scope="row">@d.Name</th>
+                        <td>@d.Language</td>
+                        <td>
+                            @if (d.PrimaryEducation == true)
+                            {
+                                <input type="checkbox" checked onclick="return false" />
+                            }
+                            else
+                            {
+                            <input type="checkbox" onclick="return false" />
+                            }
+                        </td>
+                        <td>
+                            @if (d.SecondaryEducation == true)
+                            {
+                                <input type="checkbox" checked onclick="return false" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" onclick="return false" />
+                            }
+                        </td>
+                        <td>
+                            <a asp-controller="Departments" asp-action="Details" asp-route-id="@d.ID">Detail</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Faculty.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

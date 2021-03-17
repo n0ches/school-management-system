@@ -1,0 +1,57 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Primary Education</th>
+            <th>Secondary Education</th>
+            <th>Faculty</th>
+            <th>University</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (Department department in Model.Departments) {
+        <tr>
+            <td>@department.Name</td>
+            <td>@department.Language</td>
+            <td>
+                @if (department.PrimaryEducation == true)
+                {
+                    <input type="checkbox" checked onclick="return false" />
+                }
+                else
+                {
+                    <input type="checkbox" onclick="return false" />
+                }
+            </td>
+            <td>
+                @if (department.SecondaryEducation == true)
+                {
+                    <input type="checkbox" checked onclick="return false" />
+                }
+                else
+                {
+                    <input type="checkbox" onclick="return false" />
+                }
+            </td>
+            <td>@department.Faculty.Name</td>
+            <td>@department.Faculty.University.Name</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@department.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@department.ID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
