@@ -1,4 +1,9 @@
+This is a group project that are made for CME3201 Database Management Systems class at Dokuz Eylul University. 18-11-2020
 
+Group Members:
+
+    Idrishan PARLAYAN - https://github.com/IdrishanParlayan
+    Huseyin Emrecan TAN - https://github.com/emrecantan
 
 Managing the data of an institution like an university that has hundreds of employees, hundreds of lecturers and thousands of students is quite complex and costly without the database management system. That’s why, a school system with using database management technologies is vital in this age for universities. Thanks to kind of these systems, students can follow up their lessons and grades easily and contact lecturers. Also, lecturers can follow up lessons that are teached by them, control and arrange the grades and information of nonattendance of students that take the lesson from them.
 
